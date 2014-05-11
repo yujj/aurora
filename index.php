@@ -334,16 +334,15 @@ exit();
 		<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
 		<script type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js'></script>
 
-		<link rel="stylesheet" href="CodeMirror-2.32/lib/codemirror.css">
-
-		<script src="CodeMirror-2.32/lib/codemirror.js"></script>
-		<script src="CodeMirror-2.32/mode/xml/xml.js"></script>
-		<script src="CodeMirror-2.32/mode/javascript/javascript.js"></script>
-		<script src="CodeMirror-2.32/mode/css/css.js"></script>
-		<script src="CodeMirror-2.32/mode/clike/clike.js"></script>
-		<script src="CodeMirror-2.32/mode/php/php.js"></script>
-		<script src="CodeMirror-2.32/lib/util/formatting.js"></script>
-		<script src="CodeMirror-2.32/mode/htmlmixed/htmlmixed.js"></script>
+		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/2.33.0/codemirror.css">
+		<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/2.33.0/codemirror.js"></script>
+<!-- 		<script src="CodeMirror-2.32/mode/xml/xml.js"></script> -->
+<!-- 		<script src="CodeMirror-2.32/mode/javascript/javascript.js"></script> -->
+<!-- 		<script src="CodeMirror-2.32/mode/css/css.js"></script> -->
+<!-- 		<script src="CodeMirror-2.32/mode/clike/clike.js"></script> -->
+<!-- 		<script src="CodeMirror-2.32/mode/php/php.js"></script> -->
+<!-- 		<script src="CodeMirror-2.32/lib/util/formatting.js"></script> -->
+<!-- 		<script src="CodeMirror-2.32/mode/htmlmixed/htmlmixed.js"></script> -->
 
 		<script type='text/javascript' src='main.js'></script>
 		<style type="text/css">
