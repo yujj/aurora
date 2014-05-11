@@ -1,0 +1,63 @@
+body{
+  padding: 15px 0 0px 0;
+}
+td.query{
+  background: url('img/loading.gif') no-repeat right center;
+}
+.label a, .badge a{
+  color: white;
+}
+#ftpEditorAlerts{
+  height: 1px;
+  position: fixed;
+  top: 70px;
+  right: 45px;
+  width: 28%;
+  z-index: 200;
+}
+.feditor .CodeMirror {
+  width: 100%;
+}
+.feditor .CodeMirror {border-top: 1px solid #DDD; border-bottom: 1px solid #DDD;}
+.feditor .activeline {background: #e8f2ff !important;}
+.CodeMirror-scroll {
+  height: auto;
+  overflow-y: hidden;
+  overflow-x: auto;
+}
+.CodeMirror-fullscreen {
+	display: block;
+	position: absolute;
+	top: 0; left: 0;
+	width: 100%;
+	z-index: 100;
+	background: white;
+}
+.collapse.fullscreen{
+	position: static;
+}
+#src{
+	-webkit-transition: left 0.1s ease-in;
+	width: 40%;
+	position: fixed;
+	top: 17px;
+	right: 92%;
+        z-index: 50;
+}
+
+#src:focus{
+	left:1%;
+}
+#urlchecks .label{
+overflow: hidden;
+max-width: 900px;
+display: inline-block;
+}
+.tagreport{
+    min-width: 90px;
+}
+#options .input-prepend{
+width: 100%;
+
+
+}

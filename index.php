@@ -331,80 +331,10 @@ exit();
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<title>Проверка метатэгов</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
-		<script type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js'></script>
-
+		
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css">
 		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/2.33.0/codemirror.css">
-		<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/2.33.0/codemirror.js"></script>
-<!-- 		<script src="CodeMirror-2.32/mode/xml/xml.js"></script> -->
-<!-- 		<script src="CodeMirror-2.32/mode/javascript/javascript.js"></script> -->
-<!-- 		<script src="CodeMirror-2.32/mode/css/css.js"></script> -->
-<!-- 		<script src="CodeMirror-2.32/mode/clike/clike.js"></script> -->
-<!-- 		<script src="CodeMirror-2.32/mode/php/php.js"></script> -->
-<!-- 		<script src="CodeMirror-2.32/lib/util/formatting.js"></script> -->
-<!-- 		<script src="CodeMirror-2.32/mode/htmlmixed/htmlmixed.js"></script> -->
-
-		<script type='text/javascript' src='main.js'></script>
-		<style type="text/css">
-body{
-  padding: 15px 0 0px 0;
-}
-td.query{
-  background: url('img/loading.gif') no-repeat right center;
-}
-.label a, .badge a{
-  color: white;
-}
-#ftpEditorAlerts{
-  height: 1px;
-  position: fixed;
-  top: 70px;
-  right: 45px;
-  width: 28%;
-  z-index: 200;
-}
-.feditor .CodeMirror {
-  width: 100%;
-}
-.feditor .CodeMirror {border-top: 1px solid #DDD; border-bottom: 1px solid #DDD;}
-.feditor .activeline {background: #e8f2ff !important;}
-.CodeMirror-scroll {
-  height: auto;
-  overflow-y: hidden;
-  overflow-x: auto;
-}
-.CodeMirror-fullscreen {
-	display: block;
-	position: absolute;
-	top: 0; left: 0;
-	width: 100%;
-	z-index: 100;
-	background: white;
-}
-.collapse.fullscreen{
-	position: static;
-}
-#src{
-	-webkit-transition: left 0.1s ease-in;
-	width: 40%;
-	position: fixed;
-	top: 17px;
-	right: 92%;
-        z-index: 50;
-}
-
-#src:focus{
-	left:1%;
-}
-#urlchecks .label{
-overflow: hidden;
-max-width: 900px;
-display: inline-block;
-}
-.tagreport{
-    min-width: 90px;
-}
-		</style>
+		<link rel="stylesheet" href="style.css">
 	</head>
 	<body>
 		<div class="container-fluid">
@@ -416,7 +346,6 @@ display: inline-block;
 Вставляем сюда правки по авроре.
 1 http://ya.ru/
 2 http://bertal.ru/
-3 http://otp.demis.ru/
 </textarea>
 				</div>
 				<div class="span11">
@@ -666,7 +595,21 @@ if (isset($aSEOData['text_alt']) &amp;&amp; !empty($aSEOData['text_alt'])) {
 				<textarea class="input-xlarge span12 ftext" id="ftext{fileid}" ></textarea>
 			</div>
 		</div>
+		
+		
+		<script type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js'></script>
 		<script type='text/javascript' src='//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js'></script>
-		<script src="http://malsup.github.com/jquery.form.js"></script> 
+		<script type='text/javascript' src='//malsup.github.com/jquery.form.js'></script> 
+		<script type='text/javascript' src="//cdnjs.cloudflare.com/ajax/libs/codemirror/2.33.0/codemirror.js"></script>
+<!-- 		<script src="CodeMirror-2.32/mode/xml/xml.js"></script> -->
+<!-- 		<script src="CodeMirror-2.32/mode/javascript/javascript.js"></script> -->
+<!-- 		<script src="CodeMirror-2.32/mode/css/css.js"></script> -->
+<!-- 		<script src="CodeMirror-2.32/mode/clike/clike.js"></script> -->
+<!-- 		<script src="CodeMirror-2.32/mode/php/php.js"></script> -->
+<!-- 		<script src="CodeMirror-2.32/lib/util/formatting.js"></script> -->
+<!-- 		<script src="CodeMirror-2.32/mode/htmlmixed/htmlmixed.js"></script> -->
+
+		<script type='text/javascript' src='main.js'></script>
+		
 	</body>
 </html>
