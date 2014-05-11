@@ -389,11 +389,11 @@ var auroParser = { //main class
 			$.ajax({
 				url: 'index.php',
 				type: 'POST',
-				data: 'url=' + encodeURIComponent($.toJSON(url)),
-				success: function (res) {
-					var page = $.evalJSON(res);
+				data: {url: url},
+				success: function (page) {
 					auroParser.parseAJAXAnswer(page);
-				}
+				},
+				dataType: "json"
 			});
 		}, t);
 
@@ -899,7 +899,7 @@ $(document).ready(function () {
 	setInterval(function () {
 		auroParser.update();
 	}, 1000);
-	$("#urlchecks tr").live("click", function () {
+	$("#urlchecks").on("click", "tr", function () {
 		var url = $(this).find("a").attr("href");
 		auroParser.update(url);
 	});

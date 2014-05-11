@@ -8,12 +8,12 @@ error_reporting(0);
 session_start();
 
 function urlencodeAsBrowser($url){
-	include_once(SERVER_FULL_PATH . 'libs/idna_convert.class.php');
+/*	include_once(SERVER_FULL_PATH . 'libs/idna_convert.class.php');
 	$IDN         = new idna_convert();
 	$domain = parse_url($url, PHP_URL_HOST);
 	$encoded_domain = $IDN->encode($domain);
 	$url = str_replace($domain, $encoded_domain, $url);
-
+*/
 	$url = str_replace(
 		array("%2F", "%3F", "%3D", "%40", "%3A", "%26", "%3B", "%2A", "%27", "%23"), 
 		array("/",   "?",   "=",   "@",   ":",   "&",   ";",   "*",   "'", "#"  ), 
@@ -81,7 +81,7 @@ function check_link($url) {
 }
 
 if (isset($_POST['url'])) {
-	$url = json_decode($_POST['url']);
+	$url = $_POST['url'];
 	$page;
 	$res = check_link($url);
 	if ( preg_match('#<meta[^>]+content=["\'][^>]*(1251|windows)[^>]*["\'][^>]*>#siU', $res[4])
@@ -329,12 +329,11 @@ exit();
 <html lang="ru">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<title>Проверка метатэгов, формирование кода для d-seo.php</title>
+		<title>Проверка метатэгов</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-		<link href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
-		<script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'></script>
-		<script type='text/javascript' src='jquery.json-2.2.min.js'></script>
+		<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+		<script type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js'></script>
+
 		<link rel="stylesheet" href="CodeMirror-2.32/lib/codemirror.css">
 
 		<script src="CodeMirror-2.32/lib/codemirror.js"></script>
@@ -668,7 +667,7 @@ if (isset($aSEOData['text_alt']) &amp;&amp; !empty($aSEOData['text_alt'])) {
 				<textarea class="input-xlarge span12 ftext" id="ftext{fileid}" ></textarea>
 			</div>
 		</div>
-		<script type='text/javascript' src='bootstrap/js/bootstrap.min.js'></script>
+		<script type='text/javascript' src='//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js'></script>
 		<script src="http://malsup.github.com/jquery.form.js"></script> 
 	</body>
 </html>
