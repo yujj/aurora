@@ -1,3 +1,11 @@
+(function(){
+    var app = angular.module('auroraApp', ['aurora-urls']);  
+})();
+
+
+
+
+
 String.prototype.trim = function () {
 	return this.replace(/^\s+/, "").replace(/\s+$/, "");
 }
@@ -193,15 +201,15 @@ var auroParser = { //main class
 	},
 
 	setText: function (text) {
-		if (this.text != text) {
+		/*if (this.text != text) {
 			this.text = text;
-			this.clearText();
+// 			this.clearText();
 			this.parsePages();
 			this.printStatuses();
 			this.saveText();
-		}
+		}*/
 	},
-
+/* moved
 	clearText: function () {
 		var text = this.text;
 		if (text.indexOf('http://') == 0) {
@@ -212,7 +220,7 @@ var auroParser = { //main class
 		
 		this.text = text;
 	},
-
+*/
 	saveText: function () {
 		var text = this.text;
 		localStorage['d-seo-text'] = text;
@@ -1000,9 +1008,6 @@ $(document).ready(function () {
 		$("#dseomerger textarea").height(h-100);
 		//$(".CodeMirror-scroll").height(h-315);
 	}).resize();
-	$('#bugreport_form').ajaxForm(function() { 
-                alert("Ваше сообщение отправлено!\nОставайтесь на месте - за вами уже выехали, спасибо!"); 
-        }); 
 	
 	xenuReporter.init($('#xenu_in_text'), $('#xenu_out_text_301'), $('#xenu_out_text_xxx'), $('#xenu_out_text_404'));
 	

@@ -36,7 +36,7 @@ td.query{
 .collapse.fullscreen{
 	position: static;
 }
-#src{
+#inputText{
 	-webkit-transition: left 0.1s ease-in;
 	width: 40%;
 	position: fixed;
@@ -45,19 +45,14 @@ td.query{
         z-index: 50;
 }
 
-#src:focus{
+#inputText:focus{
 	left:1%;
 }
-#urlchecks .label{
-overflow: hidden;
-max-width: 900px;
-display: inline-block;
-}
+
 .tagreport{
     min-width: 90px;
 }
 #options .input-prepend{
 width: 100%;
-
 
 }
