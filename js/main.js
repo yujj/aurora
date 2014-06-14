@@ -16,7 +16,8 @@ String.prototype.escapeHtml = function () {
 
 String.prototype.extract_info_by_regexp = function (re) {
 	var s = ((this.search(re) != -1) ? this.match(re)[1].trim() : "");
-	s = s.escapeHtml().trim();
+// 	s = s.escapeHtml().trim();
+	s = s.trim();
 	if (!s || 0 === s.length) return "";
 	return s;
 }

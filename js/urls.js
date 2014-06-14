@@ -62,25 +62,26 @@
 		this.pages = newPages;
 	};
 	this.parseInputText();
+	var options = this.options;
 	
 	this.outputDseoCode = function(){
-	  var result = 't1';
-	  var date = "\t\t// Добавлено " + _getDate() + " в  " + _getTime();
-	  angular.forEach(this.pages, function(page){
-/*
-	    if (this.siteData && this.siteData.cms_request_uri && this.siteData.cms_request_uri != this.parsedData.request_uri) {
-//  		result += "\tcase '" + this.siteData.cms_request_uri + "': " + date + "\n" + "\tcase '" + this.parsedData.request_uri + "':\t\t// это ЧПУ\n";
-	    }else{
-// 		result += "\tcase '" + this.parsedData.request_uri + "': " + date + "\n";
-	    }
-*//*	    
-	    angular.forEach(this.options, function(option){
-		if(option.show){
-		    result += "\t\t" + option.value + "'" + ( page.parsedData[option.name] || page.siteData[option.name] || '' ).replaceAll("'", "\\'")   + "';\n";
-		}
-	    });
-*/	    
-	    result += "\t\tbreak;\n\n";
+	    var result = '';
+	    var date = "\t\t// Добавлено " + _getDate() + " в  " + _getTime();
+	    angular.forEach(this.pages, function(page){
+
+	      if (page.siteData && page.siteData.cms_request_uri && page.siteData.cms_request_uri != page.parsedData.request_uri) {
+		  result += "\tcase '" + page.siteData.cms_request_uri + "': " + date + "\n" + "\tcase '" + page.parsedData.request_uri + "':\t\t// это ЧПУ\n";
+	      }else{
+		  result += "\tcase '" + page.parsedData.request_uri + "': " + date + "\n";
+	      }
+	      
+	      angular.forEach(options, function(option){
+		  if(option.show){
+		      result += "\t\t" + option.value + "'" + ( page.parsedData[option.name] || (page.siteData && page.siteData[option.name]) || '' ).replaceAll("'", "\\'") + "';\n";
+		  }
+	      });
+	      
+	      result += "\t\tbreak;\n\n";
 	  });
 	  
 	  return result;
