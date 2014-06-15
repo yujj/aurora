@@ -57,15 +57,15 @@
 					<div class="tab-content">
 						<div class="tab-pane" id="options">
 							<div class="row-fluid">
-								<div class="span3 options">
+								<div class="span3 options" ng-controller="optionsCtrl as opts">
 									<h3>Опции</h3>
-									<div class="input-prepend" ng-repeat="option in urls.options">
+									<div class="input-prepend" ng-repeat="option in opts.storage.options">
 										<span class="span5 add-on">
 										<label class="checkbox"><input type="checkbox" ng-model="option.show" >{{option.label}}</label>
 										</span>
 										<input class="span7" type="text" ng-model="option.value">
 									</div>
-									<button class="btn" ng-click="urls.resetOptions()">Сбросить</button>
+									<button class="btn" ng-click="opts.resetOptions()">Сбросить</button>
 								</div>
 							</div>
 						</div>
@@ -239,43 +239,12 @@ if (isset($aSEOData['text_alt']) &amp;&amp; !empty($aSEOData['text_alt'])) {
 			</div>
 		</div>
 		<div id="ftpEditorAlerts"></div>
-		<div id="feditorTemplate">
-			<ul class="lia"><li><a href="#{fileid}">{filename}</a></li></ul>
-			<div id="{fileid}" class="tab-pane feditor" data-filename="{filename}" data-encoding="{encoding}">
-				<div class="span12 btn-toolbar" style="margin: 3px 0;">
-					<div class="btn-group">
-						<button class="btn btn-primary btn-large fread">Прочитать</button>
-						<button class="btn btn-inverse btn-large dropdown-toggle" data-toggle="dropdown">Кодировка<span class="caret"></span></button>
-						<ul class="dropdown-menu pull-right">
-							<li><a class="freadutf8">UTF-8</a></li>
-							<li><a class="freadcp1251">windows-1251</a></li>
-						</ul>
-					</div>
-					<div class="btn-group">
-						<button class="btn btn-danger btn-large disabled fwrite">Записать</button>
-						<button class="btn btn-danger btn-large disabled dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
-						<ul class="dropdown-menu pull-right">
-							<li><a class="fwriteutf8">UTF-8</a></li>
-							<li><a class="fwritecp1251">windows-1251</a></li>
-						</ul>
-					</div>
-					<div class="btn-group">
-						<button class="btn btn-mini fformatselected">Форматировать выделенное<br/>(html, css, js, а PHP портит)</button>
-					</div>
-					<div class="btn-group">
-						<button class="btn btn-mini ffullscreen">FullSreen(F11)</button>
-					</div>
-					<div class="btn-group pull-right">
-						<button class="btn btn-mini fcreate">Создать</button>
-					</div>
-				</div>
-				<textarea class="input-xlarge span12 ftext" id="ftext{fileid}" ></textarea>
-			</div>
-		</div>
 		
 
 		<script src='//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js'></script>
 		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.17/angular.min.js"></script>
+		<script src="js/ngStorage.js"></script>
+		
 
 		
 		<script type='text/javascript' src='//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js'></script>
@@ -289,6 +258,7 @@ if (isset($aSEOData['text_alt']) &amp;&amp; !empty($aSEOData['text_alt'])) {
 <!-- 		<script src="CodeMirror-2.32/mode/htmlmixed/htmlmixed.js"></script> -->
 
 		<script type='text/javascript' src='js/main.js'></script>
+		<script type='text/javascript' src='js/options.js'></script>
 		<script type='text/javascript' src='js/urls.js'></script>
 		
 	</body>

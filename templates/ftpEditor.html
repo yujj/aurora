@@ -1,0 +1,34 @@
+		<div id="feditorTemplate">
+			<ul class="lia"><li><a href="#{fileid}">{filename}</a></li></ul>
+			<div id="{fileid}" class="tab-pane feditor" data-filename="{filename}" data-encoding="{encoding}">
+				<div class="span12 btn-toolbar" style="margin: 3px 0;">
+					<div class="btn-group">
+						<button class="btn btn-primary btn-large fread">Прочитать</button>
+						<button class="btn btn-inverse btn-large dropdown-toggle" data-toggle="dropdown">Кодировка<span class="caret"></span></button>
+						<ul class="dropdown-menu pull-right">
+							<li><a class="freadutf8">UTF-8</a></li>
+							<li><a class="freadcp1251">windows-1251</a></li>
+						</ul>
+					</div>
+					<div class="btn-group">
+						<button class="btn btn-danger btn-large disabled fwrite">Записать</button>
+						<button class="btn btn-danger btn-large disabled dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+						<ul class="dropdown-menu pull-right">
+							<li><a class="fwriteutf8">UTF-8</a></li>
+							<li><a class="fwritecp1251">windows-1251</a></li>
+						</ul>
+					</div>
+					<div class="btn-group">
+						<button class="btn btn-mini fformatselected">Форматировать выделенное<br/>(html, css, js, а PHP портит)</button>
+					</div>
+					<div class="btn-group">
+						<button class="btn btn-mini ffullscreen">FullSreen(F11)</button>
+					</div>
+					<div class="btn-group pull-right">
+						<button class="btn btn-mini fcreate">Создать</button>
+					</div>
+				</div>
+				<textarea class="input-xlarge span12 ftext" id="ftext{fileid}" ></textarea>
+			</div>
+		</div>
+ 

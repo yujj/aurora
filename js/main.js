@@ -1,5 +1,5 @@
 (function(){
-    var app = angular.module('auroraApp', ['aurora-urls']);  
+    var app = angular.module('auroraApp', ['aurora-urls', 'optionsStore']);  
 })();
 
 
@@ -61,7 +61,7 @@ function _getTime() {
 	return hours + ":" + minutes;
 }
 
-
+/*
 function Page(url, text) {
 	this.url = url.trim();
 	this.url_short = url.replace(auroParser.url_short_patt, '$1').trim();
@@ -155,6 +155,7 @@ function Page(url, text) {
 		}
 	};
 }
+*/
 
 var auroParser = { //main class
 	url_patt: /^\d+.*\n?\s*(https?:\/\/[^\s\/]*\/[^\s]*.?)/im,
@@ -283,7 +284,7 @@ var auroParser = { //main class
 		}
 	},
 
-
+/*
 	printStatuses: function () {
 		var res = "<table class='table table-striped table-bordered table-condensed'><thead><th>#</th><th>URL</th><th>Title</th><th>Keywords</th><th>Description</th><th>H1</th><th>SEO-Тэги</th></thead><tbody>";
 		var i = 1;
@@ -332,7 +333,8 @@ var auroParser = { //main class
 		this.printSeoTagsList();
 		this.optionsSave();
 	},
-
+*/
+/*
 	meta_report: function (rec, site) {
 		res = "";
 		if (rec.length == 0) {
@@ -350,6 +352,7 @@ var auroParser = { //main class
 	checkPages: function () {
 		this.runAJAX();
 	},
+*/
 
 	ajaxIsStarted: false,
 	runAJAX: function () {
@@ -436,7 +439,7 @@ var auroParser = { //main class
 		this.pages[url] = page;
 		this.printStatuses();
 	},
-
+/*
 	printDSEO: function () {
 		var res = "";
 		for (var key in this.urls) {
@@ -449,7 +452,7 @@ var auroParser = { //main class
 		this.dseo.val(res);
 	},
 
-
+*/
 	printPHPArrays: function () {
 		var res1 = "";
 		var res2 = "";
@@ -466,7 +469,7 @@ var auroParser = { //main class
 		$('#phparrays3').val(res3);
 	},
 
-	printDseoMerge: function () {
+/*	printDseoMerge: function () {
 		var text = this.dseomergersrc.val();
 		var cases = text.split(this.case_patt);
 		var res = "";
@@ -514,7 +517,7 @@ var auroParser = { //main class
 		}
 
 	},
-
+*/
 	requestFTPAccess: function () {
 		var projectName = this.getProjectName();
 		if(this.projectName == projectName){ 
@@ -710,7 +713,7 @@ var auroParser = { //main class
 		this.optionsLoad();
 	}
 };
-
+/*
 var cssTools = {
 	url : '',
 	pageContent : '',
@@ -746,7 +749,7 @@ var cssTools = {
 	}
 	
 };
-
+*/
 
 
 var refreshF5 = function (e)
@@ -784,6 +787,7 @@ var refreshF5 = function (e)
     }
 }
 
+/*
 var editors = {};
 
     function isFullScreen(cm) {
@@ -811,7 +815,7 @@ var editors = {};
       if (!showing) return;
       showing.CodeMirror.getScrollerElement().style.height = winHeight() + "px";
     });
-
+*/
 
 function brokenLink(url){
     this.url = url;
@@ -904,22 +908,24 @@ var xenuReporter = {
     
 
 $(document).ready(function () {
-	auroParser.init('#src');
-	setInterval(function () {
-		auroParser.update();
-	}, 1000);
+// 	auroParser.init('#src');
+// 	setInterval(function () {
+// 		auroParser.update();
+// 	}, 1000);
 	$("#urlchecks").on("click", "tr", function () {
 		var url = $(this).find("a").attr("href");
 		auroParser.update(url);
 	});
-	auroParser.optionsLoad();
-	$(".options input, #dseomergersrc").change(function () {
-		auroParser.printStatuses();
-	}).keyup(function () {
-		auroParser.printStatuses();
-	});
-	$("#optionsReset").click(function(){ auroParser.optionsReset(); });
-	$("#ftpConnect").click(function(){ auroParser.requestFTPAccess(); });
+// 	auroParser.optionsLoad();
+// 	$(".options input, #dseomergersrc").change(function () {
+// 		auroParser.printStatuses();
+// 	}).keyup(function () {
+// 		auroParser.printStatuses();
+// 	});
+// 	$("#optionsReset").click(function(){ auroParser.optionsReset(); });
+
+	
+// 	$("#ftpConnect").click(function(){ auroParser.requestFTPAccess(); });
 	$('#myTab a').click(function (e) {
 		if($(this).attr("target") != '_blank'){
 			e.preventDefault();
@@ -936,7 +942,11 @@ $(document).ready(function () {
 		selector: "span[rel=tooltip]",
 		placement: "left"
 	});
+
 	$(document).keydown(refreshF5);
+
+
+/*
 	var files = ['robots.txt','sitemap.xml','d-seo.php','d-url-rewriter.php','index.php','.htaccess'];
 	var feditorTemplate = $('#feditorTemplate').html();
 	var res = '';
@@ -1001,20 +1011,20 @@ $(document).ready(function () {
 		editors[id] = editor;
 	});
 
+*/
 	$(window).resize(function(){
 		var h = $(window).height();
-		//$(".tab-content").height(h-75);
-		$("#accordionFtpEditor .tab-pane").height(h-315);
+
+// 		$("#accordionFtpEditor .tab-pane").height(h-315);
 		$("#src").height(h-30);
-		$("#dseomerger textarea").height(h-100);
-		//$(".CodeMirror-scroll").height(h-315);
+
 	}).resize();
 	
 	xenuReporter.init($('#xenu_in_text'), $('#xenu_out_text_301'), $('#xenu_out_text_xxx'), $('#xenu_out_text_404'));
 	
 });
 
-
+/*
 (function($){
 	jQuery.fn.ftpEditor = function( method ){
 		var make = function(){
@@ -1119,4 +1129,4 @@ $(document).ready(function () {
 		
 		return this.each(make); 
 	};
-})(jQuery);
+})(jQuery);*/
