@@ -190,7 +190,7 @@ var auroParser = { //main class
 		});
 	},
 
-	update: function (url) {
+/*	update: function (url) {
 		if (url) {
 			this.pages[url].status = 'pending';
 			this.pages[url].siteCode = '';
@@ -201,7 +201,7 @@ var auroParser = { //main class
 			this.saveDseomergersrc();
 		}
 	},
-
+*/
 	setText: function (text) {
 		/*if (this.text != text) {
 			this.text = text;
@@ -583,11 +583,11 @@ var auroParser = { //main class
 		}
 		$("#reportTagsText").val(res);
 	},
-	refreshAll: function(){
+/*	refreshAll: function(){
 		for (var url in auroParser.urls) {
 			auroParser.update(url);
 		}
-	},
+	},*/
 	ftpConnect: function(){
 		if(!this.FTP){
 			var access = 'http://tm.demis.ru/projects/access/wiki/Access' + auroParser.projectName.replaceAll('.','');
@@ -912,10 +912,10 @@ $(document).ready(function () {
 // 	setInterval(function () {
 // 		auroParser.update();
 // 	}, 1000);
-	$("#urlchecks").on("click", "tr", function () {
-		var url = $(this).find("a").attr("href");
-		auroParser.update(url);
-	});
+// 	$("#urlchecks").on("click", "tr", function () {
+// 		var url = $(this).find("a").attr("href");
+// 		auroParser.update(url);
+// 	});
 // 	auroParser.optionsLoad();
 // 	$(".options input, #dseomergersrc").change(function () {
 // 		auroParser.printStatuses();

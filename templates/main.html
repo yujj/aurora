@@ -83,9 +83,9 @@
 								    <th>SEO-Тэги</th>
 								</thead>
 								<tbody>
-								    <tr ng-repeat="page in urls.pages">
+								    <tr ng-repeat="page in urls.pages" ng-click="urls.updateSiteData(page)" >
 									<td>{{$index + 1}}.</td>
-									<td>
+									<td class="{{page.status}}">
 									    <span ng-class="{badge: 'true', 'badge-success': page.siteCode=='200', 'badge-info': page.siteCode=='301', 'badge-important': {'404':1, '302':1}[page.siteCode], 'badge-warning': !{'200':1, '301':1, '302':1, '404':1}[page.siteCode] }">{{page.siteCode}}</span>
 									    <span class="label label-important" ng-hide="page.origurl" title="Не могу получить оригинальный урл">SUX</span>
 									    <span class="label label-success"   ng-show="page.origurl">{{page.origurl}}</span>

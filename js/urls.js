@@ -98,8 +98,17 @@
 	    return result;
 	}
 	
-	this.getSiteData = function(page){
-//TODO: write code :)	    
+	this.updateSiteData = function(page){
+	    if(page.status != 'loading'){
+		page.status = 'loading';
+		$http.post('', {url: page.parsedData.url}).
+		    success(function(data, status, headers, config) {
+			page.status = 'complete';
+		}).
+		    error(function(data, status, headers, config) {
+			page.status = 'error';
+		});
+	    }
 	}
 	
 	

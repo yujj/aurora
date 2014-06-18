@@ -1,5 +1,72 @@
 <?php
 
+function dispatch($data){
+    if(isset($data->url)){
+	return http_get($data->url);
+    }
+}
+
+function http_get($url){
+    $client = new GuzzleHttp\Client();
+    $result = array(
+	statusCode => 0,
+	effectiveUrl => $url,
+	redirects => array(),
+	isRedirectsLimitReached => false,
+	contentType => '',
+	body => '',
+    );
+    
+    $res;
+    
+    do{
+	$res = GuzzleHttp\get($url, array('allow_redirects' => false));
+	
+	$statusCode = $result['statusCode'] = $res->getStatusCode();
+	
+	$is_redirect = ($statusCode > 300) && ($statusCode < 304);
+	
+	if($is_redirect){
+	    
+	    $location = $res->getHeader('Location');
+	    $location = GuzzleHttp\Url::fromString($location);
+
+	    // Combine location with the original URL if it is not absolute.
+	    if (!$location->isAbsolute()) {
+		$originalUrl = GuzzleHttp\Url::fromString($url);
+		// Remove query string parameters and just take what is present on
+		// the redirect Location header
+		$originalUrl->getQuery()->clear();
+		$location = $originalUrl->combine($location);
+	    }
+	    
+	    $url = $result['effectiveUrl'] = (string)$location;
+	    
+	    $result['redirects'][] = array(
+		    'statusCode' => $statusCode,
+		    'effectiveUrl' => $url,
+	    );
+	    
+	    $result['isRedirectsLimitReached'] = count($result['redirects']) > 5;
+	}
+
+	
+    
+    }while($is_redirect && !$result['isRedirectsLimitReached']);
+    
+    $result['contentType'] = $res->getHeader('content-type');
+    $result['body'] = utf8_encode((string)$res->getBody());
+    
+    return $result;
+    
+}
+
+
+
+
+
+
+
 function urlencodeAsBrowser($url){
 /*	include_once(SERVER_FULL_PATH . 'libs/idna_convert.class.php');
 	$IDN         = new idna_convert();
@@ -73,8 +140,7 @@ function check_link($url) {
 	return $main;
 }
 
-if (isset($_POST['url'])) {
-	$url = $_POST['url'];
+function http_get_deprecated($url) {
 	
 	$res = check_link($url);
 	if ( preg_match('#<meta[^>]+content\s*=\s*["\'][^>]*(1251|windows)[^>]*["\'][^>]*>#siU', $res[4])
@@ -208,4 +274,7 @@ if (isset($_POST['url'])) {
 	echo $result;
 	exit();
 } //isset($_POST['url'])
+
+
+
 

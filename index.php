@@ -2,8 +2,13 @@
 
 error_reporting(1);
 
-if( ! empty( $_SERVER[ 'HTTP_X_REQUESTED_WITH' ] ) && strtolower( $_SERVER[ 'HTTP_X_REQUESTED_WITH' ]) == 'xmlhttprequest' ) {
-    include('core/request.php');
+$request_body = file_get_contents('php://input');
+$data = json_decode($request_body);
+
+if( $data ){
+    require 'vendor/autoload.php';
+    require 'core/request.php';
+    echo json_encode(dispatch($data));
 }else{
-    include('templates/main.html');
+    require 'templates/main.html';
 }

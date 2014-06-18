@@ -1,7 +1,7 @@
 body{
   padding: 15px 0 0px 0;
 }
-td.query{
+td.loading{
   background: url('img/loading.gif') no-repeat right center;
 }
 .label a, .badge a{
