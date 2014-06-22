@@ -24,7 +24,8 @@
       
 	this.inputText = "\n\nВставляем сюда правки по авроре.\n\n1 http://ya.ru/\n2 http://bertal.ru/\n\n";
 	
-	this.pages = {};
+	this.pages = [];
+	this.pageToUrlMap = {};
 	
 	this.parseInputText = function(){
 		var inputText = this.inputText;
@@ -34,65 +35,86 @@
 		this.inputText = inputText;
 
 		var texts = inputText.split(regExps.url_patt);
-		var newPages = {};
 		
+		
+		// Clear parsedData for all pages;
+		for (var i in this.pages) {
+		    var page = this.pages[i];
+		    var data = page.parsedData;
+		    page.parsedData = {
+			url: data.url,
+			request_uri: data.request_uri
+		    };
+		}
+		
+		// Parse text
+		var newPages = [];
 		for (i = 1; i < texts.length; i += 2) {
 			var url = texts[i];
 			var text = texts[i + 1];
-			var page = { 
+			var page = this.pageToUrlMap[url] || { 
 			    status: 'pending',
 			    parsedData: {
 				url: url,
-				request_uri: url.replace(regExps.url_short_patt, '$1'),
-				text: ''
+				request_uri: url.replace(regExps.url_short_patt, '$1')
 			    },
-			    siteData: (this.pages[url] && this.pages[url].siteData) || {}
-			};
-			this.updatePageText(page, text);
-			newPages[url] = page;
+			    siteData: {}
+			}
+
+			this.updateParsedData(page.parsedData, text);
+			
+			this.pageToUrlMap[url] = page;
+			newPages.push(page);
 		}
 		this.pages = newPages;
 	};
 	
-	this.updatePageText = function(page, text){
+	this.updateParsedData = function(data, text){
 
-	    if (page.parsedData.text != text) {
-		angular.extend(page.parsedData, {
-		    text: text,
-		    title: text.extract_info_by_regexp(regExps.title_patt),
-		    keywords: text.extract_info_by_regexp(regExps.keywords_patt),
-		    description: text.extract_info_by_regexp(regExps.description_patt),
-		    h1: text.extract_info_by_regexp(regExps.h1_patt),
-		    seo_text: '',
-		    seo_text2: ''
-		});
-	    }	    
+	    angular.extend(data, {
+		title: text.extract_info_by_regexp(regExps.title_patt) || data.title,
+		keywords: text.extract_info_by_regexp(regExps.keywords_patt) || data.keywords,
+		description: text.extract_info_by_regexp(regExps.description_patt) || data.description,
+		h1: text.extract_info_by_regexp(regExps.h1_patt) || data.h1,
+		seo_text: '', // TODO
+		seo_text2: ''
+	    });
 	}
 	
 	
 	this.outputDseoCode = function(){
 	    var result = '';
 	    var date = "\t\t// Добавлено " + _getDate() + " в  " + _getTime();
+	    
 	    angular.forEach(this.pages, function(page){
+		page.printoutputDseoCode = true;
+	    });
+	    
+	    angular.forEach(this.pages, function(page){
+		
+		if(page.printoutputDseoCode){
+		    page.printoutputDseoCode = false;
 
-		if (page.siteData && page.siteData.cms_request_uri && page.siteData.cms_request_uri != page.parsedData.request_uri) {
-		    result += "\tcase '" + page.siteData.cms_request_uri + "': " + date + "\n" + "\tcase '" + page.parsedData.request_uri + "':\t\t// это ЧПУ\n";
-		}else{
-		    result += "\tcase '" + page.parsedData.request_uri + "': " + date + "\n";
-		}
-		
-		angular.forEach($localStorage.options, function(option){
-		    if(option.show){
-			result += 
-			    "\t\t" + 
-			    option.value + "'" + 
-			    ( page.parsedData[option.name] || 
-			    (page.siteData && page.siteData[option.name]) || '' ).replaceAll("'", "\\'") + 
-			    "';\n";
+		    result += "\t// " + page.parsedData.url + "\n";
+		    if (page.siteData && page.siteData.cms_request_uri && page.siteData.cms_request_uri != page.parsedData.request_uri) {
+			result += "\tcase '" + page.siteData.cms_request_uri + "': " + date + "\n" + "\tcase '" + page.parsedData.request_uri + "':\t\t// это ЧПУ\n";
+		    }else{
+			result += "\tcase '" + page.parsedData.request_uri + "': " + date + "\n";
 		    }
-		});
-		
-		result += "\t\tbreak;\n\n";
+		    
+		    angular.forEach($localStorage.options, function(option){
+			if(option.show){
+			    result += 
+				"\t\t" + 
+				option.value + "'" + 
+				( page.parsedData[option.name] || 
+				(page.siteData && page.siteData[option.name]) || '' ).replaceAll("'", "\\'") + 
+				"';\n";
+			}
+		    });
+		    
+		    result += "\t\tbreak;\n\n";
+		}
 	    });
 	  
 	    return result;
