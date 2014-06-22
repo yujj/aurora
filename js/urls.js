@@ -101,15 +101,24 @@
 	this.updateSiteData = function(page){
 	    if(page.status != 'loading'){
 		page.status = 'loading';
+		var urls = this;
 		$http.post('', {url: page.parsedData.url}).
 		    success(function(data, status, headers, config) {
 			page.status = 'complete';
+			page.siteData = data;
+			urls.parseSiteData(page);
 		}).
 		    error(function(data, status, headers, config) {
 			page.status = 'error';
 		});
 	    }
 	}
+	
+	this.parseSiteData = function(page){
+	    data = page.siteData;
+	    console.log(data.body);
+	}
+	
 	
 	
 	this.parseInputText();
