@@ -25,10 +25,7 @@
 	this.storage = $localStorage.$default({
 	    inputText: "\n\nВставляем сюда правки по авроре.\n\n1 http://ya.ru/\n2 http://bertal.ru/\n\n"
 	});
-	
-// 	this.inputText = "\n\nВставляем сюда правки по авроре.\n\n1 http://ya.ru/\n2 http://bertal.ru/\n\n";
-// 	this.inputText = storage.inputText;
-	
+		
 	this.pages = [];
 	this.pageToUrlMap = {};
 	
@@ -156,3 +153,45 @@
  
 
 
+/* TODO: print reports:
+ * 
+
+	printPHPArrays: function () {
+		var res1 = "";
+		var res2 = "";
+		var res3 = "";
+		for (var key in this.urls) {
+			var page = this.pages[key];
+			res1 += "'" + page.origurl + "',\n";
+			res2 += "'" + page.origurl + "' => '',\n";
+			res3 += "'" + page.url_short + "' => '',\n";
+		}
+
+		$('#phparrays1').val(res1);
+		$('#phparrays2').val(res2);
+		$('#phparrays3').val(res3);
+	},
+
+
+	print404list: function () {
+		var res = "Битые ссылки и ссылки через редирект:\n\n|Страница|Отклик сервера|\n";
+		for (var key in this.urls) {
+			var page = this.pages[key];
+			if (page.status == 'finished' && page.siteCode != '200' ) {
+				res += "|"+page.url+"|"+page.siteCode+"|\n";
+			}
+		}
+		$("#report404text").val(res);
+	},
+
+	printSeoTagsList: function () {
+		var res = "Количество SEO-тэгов на страницах:\n\n|Страница|Тэг:кол-во|\n";
+		for (var key in this.urls) {
+			var page = this.pages[key];
+			if (page.status == 'finished' && (page.siteCode == '200' || page.siteCode == '301')) {
+				res += "|"+page.url+"|"+page.tagreport.replaceAll(/<[^>]+>/,'').replaceAll('&nbsp;', ' ')+"|\n";
+			}
+		}
+		$("#reportTagsText").val(res);
+	},
+*/
