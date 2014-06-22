@@ -22,17 +22,22 @@
     
     app.controller('UrlsCtrl', ['$http', '$localStorage', function($http, $localStorage){
       
-	this.inputText = "\n\nВставляем сюда правки по авроре.\n\n1 http://ya.ru/\n2 http://bertal.ru/\n\n";
+	this.storage = $localStorage.$default({
+	    inputText: "\n\nВставляем сюда правки по авроре.\n\n1 http://ya.ru/\n2 http://bertal.ru/\n\n"
+	});
+	
+// 	this.inputText = "\n\nВставляем сюда правки по авроре.\n\n1 http://ya.ru/\n2 http://bertal.ru/\n\n";
+// 	this.inputText = storage.inputText;
 	
 	this.pages = [];
 	this.pageToUrlMap = {};
 	
 	this.parseInputText = function(){
-		var inputText = this.inputText;
+		var inputText = this.storage.inputText;
 		if (inputText.indexOf('http://') == 0) {
 			inputText = inputText.replaceAll('http://', '1 http://');
 		}
-		this.inputText = inputText;
+		this.storage.inputText = inputText;
 
 		var texts = inputText.split(regExps.url_patt);
 		

@@ -18,7 +18,7 @@
 	this.storage = $localStorage.$default(angular.copy(defaultStorage));
 	
 	this.resetOptions = function(){
-	    this.storage = $localStorage.$reset(angular.copy(defaultStorage));
+	    this.storage.options = angular.copy(defaultStorage.options);
 	};
 	
     });
