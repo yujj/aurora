@@ -1,3 +1,17 @@
+String.prototype.trim = function () {
+	return this.replace(/^\s+/, "").replace(/\s+$/, "");
+}
+
+String.prototype.extract_info_by_regexp = function (re) {
+	return  s = ((this.search(re) != -1) ? this.match(re)[1].trim() : "").trim();
+}
+
+String.prototype.replaceAll = function (search, replace) {
+	return this.split(search).join(replace);
+}
+
+
+
 (function(){
     var app = angular.module('auroraApp', ['aurora-urls', 'optionsStore']);  
 })();
@@ -6,25 +20,6 @@
 
 
 
-String.prototype.trim = function () {
-	return this.replace(/^\s+/, "").replace(/\s+$/, "");
-}
-
-String.prototype.escapeHtml = function () {
-	return this.replace(/&(?!amp;)/g, "&amp;").replace(/<(?!lt;)/g, "&lt;").replace(/>(?!gt;)/g, "&gt;").replace(/"(?!quot;)/g, "&quot;").replace(/'(?!#039;)/g, "&#039;").replace(/&amp;(\w+;)/g, "&$1");
-}
-
-String.prototype.extract_info_by_regexp = function (re) {
-	var s = ((this.search(re) != -1) ? this.match(re)[1].trim() : "");
-// 	s = s.escapeHtml().trim();
-	s = s.trim();
-	if (!s || 0 === s.length) return "";
-	return s;
-}
-
-String.prototype.replaceAll = function (search, replace) {
-	return this.split(search).join(replace);
-}
 
 
 function _getDate() {
